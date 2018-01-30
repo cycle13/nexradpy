@@ -7,16 +7,8 @@ LOOKUP = 'lookup'
 connection = None
 cursor = None
 
-# to be finished later
-def get_cur_ids(table_name = TABLE):
-	select_query = "SELECT DISTINCT icon_id FROM %s;" % TABLE
-	cursor.execute(select_query)
-	icon_ids = cursor.fetchall()
-
-	return icon_ids
-
 '''
-Takes friend_id, follower_id, follower_screen_name
+Placeholder
 '''
 def add_entry_db(i_id, f_id, f_screen):
 	insert_query = "INSERT INTO " + TABLE + " (icon_id, follower_id, follower_screen) VALUES(%s, %s, %s)"
@@ -40,7 +32,7 @@ def connect_db(dbname = DATABASE):
 		print('Make sure DB exists!')
 
 '''
-Need to re-write with string var for cols, datatypes
+Placeholder
 '''
 def create_table(table_name = TABLE):
 	create_query = ('CREATE TABLE IF NOT EXISTS ' + TABLE + ' ('
