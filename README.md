@@ -12,7 +12,8 @@ I'm currently scraping the radar files directly from NOAA's site, though may soo
 Here's how I set up the project on OS Sierra and Ubuntu 16.04 using Python2.7:
 
 ```bash
-git clone https://github.com/clambygrum/nexradpy.git
+git clone https://github.com/clambygrum/NEXRADpy.git
+cd NEXRADpy
 virtualenv <your virtualenv>
 pip install -r requirements.txt
 ```
