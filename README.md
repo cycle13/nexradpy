@@ -12,19 +12,34 @@ I'm currently scraping the radar files directly from NOAA's site, though may soo
 Here's how I set up the project on OS Sierra and Ubuntu 16.04 using Python2.7:
 
 ```bash
-git clone https://github.com/clambygrum/NEXRADpy.git
+git clone https://github.com/clambygrum/NEXRADpy
 cd NEXRADpy
 virtualenv <your virtualenv>
 pip install -r requirements.txt
 ```
 
-Next install pyart:
+To install Pyart if using OS Sierra:
 
 ```bash
 touch <yourvirtualenv>/lib/python2.7/site-packages/matplotlib/matplotlibrc
 echo "backend:TkAgg" > <yourvirtualenv>/lib/python2.7/site-packages/matplotlib/matplotlibrc
+source activate <yourvirtualenv>
 git clone https://github.com/ARM-DOE/pyart
-python pyart/setup.py build_ext -i
+cd pyart
+python setup.py build_ext -i
+cd ..
 touch <your virtualenv>/lib/python2.7/site-packages/pyart.pth
 echo "/Users/<your username>/.../nexradpy/pyart" > <yourvirtualenv>/lib/python2.7/site-packages/pyart.pth
 ```
+
+If using Ubuntu:
+
+```bash
+git clone https://github.com/ARM-DOE/pyart
+cd pyart 
+python setup.py build_ext -i
+cd ..
+echo "export PYTHONPATH=\"${PYTHONPATH}:<absolute path to pyart>\"" >> <yourvirtualenv>/bin/activate
+source activate <yourvirtualenv>
+```
+

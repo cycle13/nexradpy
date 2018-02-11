@@ -98,7 +98,7 @@ def get_files(date):
 	if not os.path.isdir(day_root):
 		os.makedirs(day_root)
 
-	for item in itemlist:
+	for i, item in enumerate(itemlist):
 		# Could encapsulate this in get_node(node)
 		# Would take node, date
 
@@ -107,7 +107,7 @@ def get_files(date):
 		node_url = BASE_URL + '/' + t
 		intraday_file = t.split('/')[-1].split('.')[0]
 
-		if intraday_file[0:4] == SITE:
+		if intraday_file[0:4] == SITE and i == 0:
 			outfile = day_root + '/' + intraday_file
 			download_one(node_url, outfile)
 			# do stuff
