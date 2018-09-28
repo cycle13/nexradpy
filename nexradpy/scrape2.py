@@ -1,5 +1,7 @@
 import os
 import gzip
+import requests
+import tempfile
 
 from xml.dom import minidom
 from sys import stdin
@@ -22,7 +24,6 @@ def date_list(start, end):
     cur = start
 
     while cur <= end:
-        print('Appending: ', cur)
         dates.append(cur)
         cur += timedelta(days=1)
     
@@ -46,9 +47,11 @@ def get_text(nodelist):
     return ''.join(rc)
 
 
-def get_files_by_date(date):
+def file_list_by_date(date):
     xmldoc = minidom.parse(urlopen(urlify(date)))
     itemlist = xmldoc.getElementsByTagName('Key')
+
+    intraday_file_list = []
 
     for i, item in enumerate(itemlist):
         t = get_text(item.childNodes)
@@ -56,18 +59,32 @@ def get_files_by_date(date):
         intraday_file = t.split('/')[-1].split('.')[0]
 
         if intraday_file[0:4] == SITE and i == 0:
-            print(node_url)
+            intraday_file_list.append(node_url)
         elif intraday_file[0:3] == 'NWS':
-            print('Not sure what these files are: ', node_url)
+            print('Not sure what these files are: ', intraday_file)
         else:
             print('Unrecognizable node name: ', node_url)
 
+    return intraday_file_list
 
-def get_files_by_range(date_list):
-    for date in date_list:
-        get_files_by_date(date) 
+
+def file_list_by_datelist(date_list):
+    return [file_list_by_date(date) for date in date_list]
+
+
+def download_intraday(intraday_absurl):
+    '''takes intraday absolute url and returns tempfile holding data'''
+    r = requests.get(intraday_absurl)
+    buf = StringIO(r.read())
+    data = gzip.GzipFile(fileobj = buf).read()
+
+    # write to tempfile
+    tf = tempfile.TemporaryFile()
+    tf.write(data)
+
+    return tf
 
 
 if __name__ == "__main__":
-    '''print files found between start and end dates'''
-    get_files_by_range(date_list(START, END))
+    '''test'''
+    download_intraday(file_list_by_datelist(date_list(START, END))[0][0]).close()
