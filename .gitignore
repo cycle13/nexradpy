@@ -1,7 +1,3 @@
-# Data
-**/*.csv
-**/*KOKX*
-
 # Module and virtualenv
 radar-env
 pyart
