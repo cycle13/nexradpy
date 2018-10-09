@@ -5,4 +5,8 @@ pyart
 # Misc old files
 zOld
 
+# Junk files 
 **/.DS_Store
+**/__pycache__
+**/__pycache__/
+**/*.pyc

@@ -80,7 +80,7 @@ def get_data_by_station(station, start, end):
     uri += end.strftime('year2=%Y&month2=%m&day2=%d&')
     uri += f'&station={station}'
 
-    print('Print downloading data for', station, 'between', start, 'and', end)
+    print('Downloading data for', station, 'between', start, 'and', end)
     return download_data(uri)
 
 
