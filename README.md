@@ -23,3 +23,4 @@
 * [NEXRAD Viz](https://cloud.google.com/blog/products/gcp/visualization-and-large-scale-processing-of-historical-weather-radar-nexrad-level-ii-data)
 * [Misc Sources](http://www.jeremydjacksonphd.com/2016/04/13/radar-with-python/)
 * [Article on usage of NEXRAD on AWS](https://journals.ametsoc.org/doi/full/10.1175/BAMS-D-16-0021.1)
+* [Dask, python library parallelizing](http://docs.dask.org/en/latest/why.html)
