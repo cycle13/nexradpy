@@ -1,3 +1,6 @@
+# Data files not for lfs
+data/raw/*.gz
+
 # Module and virtualenv
 radar-env
 pyart

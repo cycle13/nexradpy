@@ -1,3 +1,4 @@
+boto==2.49.0
 boto3==1.9.14
 botocore==1.12.14
 certifi==2018.8.24
@@ -28,4 +29,6 @@ s3transfer==0.1.13
 scipy==1.0.0
 Shapely==1.6.4.post2
 six==1.11.0
+trianglesolver==1.1
 urllib3==1.23
+utm==0.4.2
