@@ -12,7 +12,8 @@ import numpy
 import trianglesolver
 import utm
 
-from nexrad_metadata import *
+# get STATION_INDEX
+from metadata import *
 
 
 # From https://en.wikipedia.org/wiki/NEXRAD
@@ -479,6 +480,10 @@ def _downloadFile(key, file_path, verbose):
         print("%s downloaded" % file_path)
 
 
+# TODO: make public main() for nexradpy <<api>>: get_nexrad()
+#       see s3_nexrad_search for complete args
+
+
 def main():
     ## EXAMPLE USAGE
     nexrad = S3NEXRADHelper(threads=20)
@@ -486,7 +491,8 @@ def main():
             datetime.datetime(day=5, month=5, year=2015, hour=5),
             datetime.datetime(day=5, month=5, year=2015, hour=6), 
             40.901954, -73.632802, 40.460969, -74.363177, 20000)
-    nexrad.downloadNEXRADFiles('data/raw', s3keys)
+    nexrad.downloadNEXRADFiles(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'data/raw/temp')), s3keys)
+
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,6 @@
 # Data files not for lfs
 data/raw/*.gz
+data/raw/temp/*.gz
 
 # Module and virtualenv
 radar-env
